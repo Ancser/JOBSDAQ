@@ -6,6 +6,7 @@ postings with disclosed pay ranges into:
 - a skill quote and active-posting cohort chart;
 - a stock-style wage-exposure heat map;
 - a device-local personal skill portfolio;
+- a job-specific application preview with saved role variants;
 - an explicit separation between roles, skills, licenses, and tools.
 
 The visual shell reuses the layout language of `ancserTPX`: a centered top-bar
@@ -61,3 +62,13 @@ npm run dev
 
 The personal portfolio is stored in `localStorage`; the demo has no account,
 database, or secret API key.
+
+## Application preview
+
+The Application page uses a canonical-facts approach: dates, projects,
+technologies, and resume metrics remain locked, while each role version can
+reorder evidence and align terminology. The seeded AI product, trading systems,
+and graphics profiles are demo drafts derived from the supplied resume and do
+not imply that an application was submitted. Missing metrics are shown as
+evidence gaps rather than invented claims. Only the selected record id is stored
+locally; the source PDF itself is not bundled into the deployed site.

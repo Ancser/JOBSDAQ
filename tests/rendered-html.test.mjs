@@ -37,6 +37,7 @@ test("server-renders the JOBSDAQ product shell", async () => {
   assert.match(html, />Market</);
   assert.match(html, />Heat Map</);
   assert.match(html, />Portfolio</);
+  assert.match(html, />Application</);
   assert.match(html, /GREENHOUSE API/);
   assert.match(html, /FIGMA/);
   assert.match(html, /og\.png/);
@@ -55,6 +56,9 @@ test("removes starter preview assets and ships product metadata", async () => {
   assert.match(page, /Greenhouse/);
   assert.match(page, /Prompt Engineering/);
   assert.match(page, /PERSONAL SKILLS/);
+  assert.match(page, /APPLICATION HISTORY/);
+  assert.match(page, /FACT-SAFE TAILORING/);
+  assert.match(page, /Deyu Huang/);
   assert.match(layout, /JOBSDAQ — The Market for Human Skills/);
   assert.match(layout, /\/og\.png/);
   assert.match(packageJson, /"name": "jobsdaq"/);

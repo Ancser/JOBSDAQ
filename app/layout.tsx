@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
     (host.startsWith("localhost") ? "http" : "https");
   const origin = `${protocol}://${host}`;
   const description =
-    "A live demo that turns public salary postings into skill price, wage exposure, market heat maps, and a personal skill portfolio.";
+    "A live demo for skill pricing, wage heat maps, personal portfolios, and fact-safe job application previews.";
 
   return {
     metadataBase: new URL(origin),

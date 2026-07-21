@@ -8,7 +8,7 @@ import {
   useState,
 } from "react";
 
-type PageId = "market" | "heatmap" | "portfolio";
+type PageId = "market" | "heatmap" | "portfolio" | "application";
 type HeatMode = "skills" | "roles";
 type DataStatus = "loading" | "live" | "fallback";
 
@@ -86,6 +86,42 @@ type SkillDefinition = {
   ticker: string;
   category: string;
   patterns: RegExp[];
+};
+
+type ApplicationStatus = "DRAFT" | "READY" | "SENT";
+
+type ApplicationExperience = {
+  kind: "EXPERIENCE" | "PROJECT";
+  title: string;
+  meta: string;
+  bullets: string[];
+};
+
+type ApplicationRecord = {
+  id: string;
+  company: string;
+  companyMark: string;
+  role: string;
+  location: string;
+  updatedAt: string;
+  status: ApplicationStatus;
+  match: number;
+  channel: string;
+  headline: string;
+  summary: string;
+  focus: string[];
+  experiences: ApplicationExperience[];
+  skillGroups: Array<{ label: string; value: string }>;
+  experiments: Array<{
+    name: string;
+    problem: string;
+    approach: string;
+    evaluation: string;
+    gap: string;
+  }>;
+  promoted: string;
+  deferred: string;
+  rationale: string;
 };
 
 const SOURCE_URL =
@@ -295,6 +331,213 @@ const PAGE_LABELS: Array<{ id: PageId; label: string }> = [
   { id: "market", label: "Market" },
   { id: "heatmap", label: "Heat Map" },
   { id: "portfolio", label: "Portfolio" },
+  { id: "application", label: "Application" },
+];
+
+const APPLICATIONS: ApplicationRecord[] = [
+  {
+    id: "figma-ai-product",
+    company: "Figma",
+    companyMark: "FI",
+    role: "Software Engineer, AI Product",
+    location: "San Francisco, CA / Hybrid",
+    updatedAt: "JUL 18, 2026",
+    status: "READY",
+    match: 91,
+    channel: "DIRECT",
+    headline: "AI-assisted product engineer who turns ambiguous workflows into reliable software",
+    summary:
+      "UC Davis computer science graduate building production Python systems, LLM-assisted workflows, and user-facing tools. Experienced in directing coding agents, evaluating model-assisted ranking, and supporting software across real user environments.",
+    focus: ["PYTHON", "LLM EVALUATION", "AGENT WORKFLOWS", "PRODUCT DELIVERY"],
+    experiences: [
+      {
+        kind: "PROJECT",
+        title: "ancserTPX - Live Algorithmic Futures Trading Platform",
+        meta: "Python | 2026 - Present",
+        bullets: [
+          "Directed Claude Code and Codex agents to translate Pine Script strategy logic into a production Python engine with shadow, paper, and live execution modes.",
+          "Deployed the system for multiple traders, providing installation support and debugging across user environments while maintaining AI-usage documentation and Git history.",
+        ],
+      },
+      {
+        kind: "PROJECT",
+        title: "Music Recommendation System",
+        meta: "Python, ML, LLM Integration | 2026",
+        bullets: [
+          "Integrated an LLM with collaborative filtering to re-rank each user's top-10 recommendations, improving NDCG and recall over the baseline and visualizing the comparison in statistical charts.",
+        ],
+      },
+      {
+        kind: "EXPERIENCE",
+        title: "Workflow Automation - Double Jo Massage",
+        meta: "Google Apps Script | 2024",
+        bullets: [
+          "Replaced manual bookkeeping and payroll entry with an end-to-end Google Sheets workflow designed for non-technical managers and staff.",
+        ],
+      },
+    ],
+    skillGroups: [
+      { label: "BUILD", value: "Python, JavaScript, HTML/CSS, SQL, Git" },
+      { label: "AI", value: "Claude Code, Codex, LLM workflows, evaluation, re-ranking" },
+      { label: "DATA", value: "pandas, NumPy, scikit-learn, statistical backtesting" },
+    ],
+    experiments: [
+      {
+        name: "LLM re-ranking",
+        problem: "Improve a collaborative-filtering top-10 list.",
+        approach: "Use an LLM as a second-stage re-ranker.",
+        evaluation: "NDCG and recall improved over baseline.",
+        gap: "Dataset size and lift percentage are not in the source resume.",
+      },
+      {
+        name: "Agent-built execution",
+        problem: "Move strategy logic from Pine Script into a deployable system.",
+        approach: "Direct coding agents, document usage, and validate shadow/paper/live modes.",
+        evaluation: "Deployed for multiple traders across user environments.",
+        gap: "No latency, usage-count, or productivity metric is claimed.",
+      },
+    ],
+    promoted: "ancserTPX, Music Recommendation System, workflow automation",
+    deferred: "Graphics and game projects remain in the fact bank but move below the one-page relevance cutoff.",
+    rationale:
+      "This version leads with agent direction, evaluation, deployment, and support. It keeps the trading domain as evidence of product execution rather than presenting finance as the target identity.",
+  },
+  {
+    id: "quant-systems",
+    company: "IMC Trading",
+    companyMark: "IM",
+    role: "Graduate Software Engineer",
+    location: "Chicago, IL",
+    updatedAt: "JUL 12, 2026",
+    status: "DRAFT",
+    match: 88,
+    channel: "CAMPUS",
+    headline: "Systems-minded engineer building live trading, research, and risk-control infrastructure",
+    summary:
+      "Computer science and statistics graduate with hands-on experience shipping automated trading systems, comparing strategy variants, and translating research logic into controlled execution software.",
+    focus: ["PYTHON", "C++", "BACKTESTING", "RISK CONTROLS"],
+    experiences: [
+      {
+        kind: "PROJECT",
+        title: "ancserTPX - Live Algorithmic Futures Trading Platform",
+        meta: "Python | 2026 - Present",
+        bullets: [
+          "Architected and deployed a futures execution engine with shadow, paper, and live modes, structured stop-loss controls, and scaled take-profit handling.",
+          "Built a backtesting engine and monitoring dashboard using Calmar ratio, maximum drawdown, and risk-reward ratio to compare strategy behavior before deployment.",
+        ],
+      },
+      {
+        kind: "PROJECT",
+        title: "ancserAPX - Factor-Based Equity Trading Platform",
+        meta: "Python | 2025 - Present",
+        bullets: [
+          "Built an automated platform spanning a 10-equity portfolio with an ML factor-research pipeline and SVD-based signal extraction.",
+          "Produced version-controlled backtest visualizations and a web dashboard for comparing strategy variants and tracking results.",
+        ],
+      },
+      {
+        kind: "PROJECT",
+        title: "Legislative Bill Passage Classifier",
+        meta: "Machine Learning Coursework",
+        bullets: [
+          "Implemented a decision-tree classifier in Google Colab to predict legislative bill-passage outcomes.",
+        ],
+      },
+    ],
+    skillGroups: [
+      { label: "CORE", value: "Python, C++, Java, SQL, data structures, algorithms" },
+      { label: "RESEARCH", value: "SVD factor models, decision trees, pandas, NumPy" },
+      { label: "CONTROL", value: "Backtesting, Calmar ratio, drawdown, paper/live modes" },
+    ],
+    experiments: [
+      {
+        name: "Strategy validation",
+        problem: "Compare strategy variants before live execution.",
+        approach: "Backtest with Calmar ratio, maximum drawdown, and risk-reward ratio.",
+        evaluation: "Results are visualized in a monitoring dashboard.",
+        gap: "Return, test period, and benchmark values are not stated.",
+      },
+      {
+        name: "Factor research",
+        problem: "Extract signals for an automated equity portfolio.",
+        approach: "Use SVD-based factor extraction across 10 equities.",
+        evaluation: "Strategy variants are compared through versioned backtests.",
+        gap: "No alpha or Sharpe-ratio claim is added.",
+      },
+    ],
+    promoted: "ancserTPX, ancserAPX, statistics minor and systems coursework",
+    deferred: "LLM tooling stays visible as an engineering method, but no longer leads the narrative.",
+    rationale:
+      "This version foregrounds execution modes, research validation, risk controls, and systems fundamentals. Every metric comes from the master resume; no simulated returns or latency claims are added.",
+  },
+  {
+    id: "nvidia-graphics",
+    company: "NVIDIA",
+    companyMark: "NV",
+    role: "Graphics Software Engineer, New Grad",
+    location: "Santa Clara, CA",
+    updatedAt: "JUL 03, 2026",
+    status: "DRAFT",
+    match: 84,
+    channel: "REFERRAL",
+    headline: "Graphics-focused software engineer combining shader programming with interactive systems",
+    summary:
+      "UC Davis computer science graduate with real-time graphics, shader programming, and game-development experience across GLSL, HLSL/DirectX, Unity3D, C#, and C++.",
+    focus: ["GLSL", "DIRECTX / HLSL", "C++", "REAL-TIME RENDERING"],
+    experiences: [
+      {
+        kind: "PROJECT",
+        title: "Sakura Train Particle System",
+        meta: "GLSL, DirectX | 2025",
+        bullets: [
+          "Built a real-time particle-rendering pipeline for a falling-sakura train scene inspired by 5 Centimeters Per Second.",
+          "Simulated organic, non-repeating motion by tuning randomized velocity, drift, rotation-angle, and physics-based falling parameters.",
+        ],
+      },
+      {
+        kind: "PROJECT",
+        title: "Farm Frenzy - 3-Day Game Jam",
+        meta: "Unity3D, C# | 2024",
+        bullets: [
+          "Designed and built a 3D farm simulation in three days, implementing crop-growth cycles, inventory/store systems, and time-based gameplay loops.",
+          "Implemented movement, collection, and selling mechanics and organized the 3D prop and scene layout.",
+        ],
+      },
+      {
+        kind: "PROJECT",
+        title: "ancserTPX - Monitoring Dashboard",
+        meta: "Python, Web UI | 2026 - Present",
+        bullets: [
+          "Built a web dashboard for monitoring a live execution system and comparing risk and backtest outputs across strategy variants.",
+        ],
+      },
+    ],
+    skillGroups: [
+      { label: "GRAPHICS", value: "GLSL, HLSL/DirectX, particle systems, shaders" },
+      { label: "ENGINE", value: "Unity3D, C#, C++, real-time rendering" },
+      { label: "SYSTEMS", value: "Computer architecture, operating systems, Git" },
+    ],
+    experiments: [
+      {
+        name: "Particle motion",
+        problem: "Avoid repetitive, mechanical falling-petal movement.",
+        approach: "Randomize velocity, drift, rotation angle, and falling behavior.",
+        evaluation: "Produced an organic, non-repeating animation.",
+        gap: "Particle count, frame rate, and hardware are not documented.",
+      },
+      {
+        name: "Game-jam delivery",
+        problem: "Complete a playable 3D simulation under a three-day constraint.",
+        approach: "Prioritize the crop, inventory, store, movement, and time loops.",
+        evaluation: "A complete Farm Frenzy prototype was delivered in the jam window.",
+        gap: "Team size and individual ownership split are not stated.",
+      },
+    ],
+    promoted: "Sakura Train, Farm Frenzy, graphics and systems coursework",
+    deferred: "Trading research is compressed to one dashboard example; finance-specific details move out of the first-page story.",
+    rationale:
+      "This version puts rendering evidence first and uses the game jam to show delivery under a hard deadline. It does not claim CUDA, Vulkan, engine internals, or performance numbers absent from the source resume.",
+  },
 ];
 
 const money = new Intl.NumberFormat("en-US", {
@@ -894,6 +1137,216 @@ function MetricCard({
   );
 }
 
+function ApplicationPage({
+  selectedId,
+  onSelect,
+}: {
+  selectedId: string;
+  onSelect: (id: string) => void;
+}) {
+  const application =
+    APPLICATIONS.find((item) => item.id === selectedId) ?? APPLICATIONS[0];
+
+  return (
+    <main className="application-page page-view">
+      <aside className="application-history">
+        <div className="application-history-head">
+          <div className="panel-title">APPLICATION HISTORY</div>
+          <span className="application-demo-label">SEEDED DEMO</span>
+          <h2>One fact bank.<br />A version for every role.</h2>
+          <p>
+            Each record freezes a job-specific narrative while keeping the
+            claims from the source resume unchanged.
+          </p>
+        </div>
+
+        <div className="application-history-stats" aria-label="Application summary">
+          <div><strong>{APPLICATIONS.length}</strong><span>VERSIONS</span></div>
+          <div><strong>{APPLICATIONS.filter((item) => item.status === "READY").length}</strong><span>READY</span></div>
+          <div><strong>0</strong><span>NEW FACTS</span></div>
+        </div>
+
+        <div className="application-records" aria-label="Saved application versions">
+          {APPLICATIONS.map((item) => (
+            <button
+              key={item.id}
+              className={`application-record ${item.id === application.id ? "selected" : ""}`}
+              onClick={() => onSelect(item.id)}
+              aria-pressed={item.id === application.id}
+            >
+              <span className="application-company-mark">{item.companyMark}</span>
+              <span className="application-record-copy">
+                <span className="application-record-meta">
+                  <strong>{item.company}</strong>
+                  <em className={`application-status status-${item.status.toLowerCase()}`}>
+                    {item.status}
+                  </em>
+                </span>
+                <span className="application-record-role">{item.role}</span>
+                <span className="application-record-foot">
+                  {item.updatedAt} <i /> MATCH {item.match}%
+                </span>
+              </span>
+            </button>
+          ))}
+        </div>
+
+        <section className="application-policy">
+          <span className="card-kicker">FACT-SAFE TAILORING</span>
+          <h2>Rewrite the angle, not the evidence.</h2>
+          <ol>
+            <li><span>01</span> Lock projects, dates, tools, and metrics.</li>
+            <li><span>02</span> Reorder evidence against the job signals.</li>
+            <li><span>03</span> Mark missing proof instead of inventing it.</li>
+          </ol>
+          <p>Seeded records are draft profiles and do not imply a real submission.</p>
+        </section>
+      </aside>
+
+      <section className="application-workbench">
+        <div className="application-toolbar">
+          <div>
+            <span className="application-toolbar-kicker">APPLICATION PREVIEW / REVISION 01</span>
+            <strong>{application.company} / {application.role}</strong>
+          </div>
+          <div className="application-toolbar-actions">
+            <span>FACTS LOCKED</span>
+            <button onClick={() => window.print()}>PRINT / SAVE PDF</button>
+          </div>
+        </div>
+
+        <div className="application-canvas">
+          <article className="application-paper" aria-label={`${application.company} ${application.role} application preview`}>
+            <header className="application-paper-header">
+              <div>
+                <span className="paper-overline">TARGETED APPLICATION</span>
+                <h1>Deyu Huang</h1>
+                <p>{application.headline}</p>
+              </div>
+              <address>
+                Concord, California<br />
+                ancser.social@gmail.com<br />
+                (510) 361-6008<br />
+                linkedin.com/in/ancser
+              </address>
+            </header>
+
+            <section className="application-target-strip">
+              <div>
+                <span>TARGET COMPANY</span>
+                <strong>{application.company}</strong>
+              </div>
+              <div className="application-target-role">
+                <span>ROLE</span>
+                <strong>{application.role}</strong>
+              </div>
+              <div>
+                <span>LOCATION</span>
+                <strong>{application.location}</strong>
+              </div>
+              <div>
+                <span>VERSION</span>
+                <strong>{application.updatedAt}</strong>
+              </div>
+            </section>
+
+            <div className="application-paper-grid">
+              <div className="application-document-main">
+                <section className="paper-section application-positioning">
+                  <div className="paper-section-heading">
+                    <span>01</span><h2>Positioning</h2>
+                  </div>
+                  <p>{application.summary}</p>
+                </section>
+
+                <section className="paper-section">
+                  <div className="paper-section-heading">
+                    <span>02</span><h2>Selected Evidence</h2>
+                  </div>
+                  <div className="application-experience-list">
+                    {application.experiences.map((experience) => (
+                      <article className="application-experience" key={experience.title}>
+                        <div className="application-experience-title">
+                          <div>
+                            <span>{experience.kind}</span>
+                            <h3>{experience.title}</h3>
+                          </div>
+                          <em>{experience.meta}</em>
+                        </div>
+                        <ul>
+                          {experience.bullets.map((bullet) => (
+                            <li key={bullet}>{bullet}</li>
+                          ))}
+                        </ul>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="paper-section application-education">
+                  <div className="paper-section-heading">
+                    <span>03</span><h2>Education</h2>
+                  </div>
+                  <div>
+                    <strong>University of California, Davis</strong>
+                    <span>B.S. Computer Science / Minor in Statistics / Jun 2026</span>
+                    <p>Algorithms, Machine Learning, Computer Architecture, Operating Systems, Computer Graphics, Networks, Data Structures, Statistics</p>
+                  </div>
+                </section>
+              </div>
+
+              <aside className="application-document-notes">
+                <section>
+                  <span className="paper-side-label">ROLE SIGNALS</span>
+                  <div className="application-focus-list">
+                    {application.focus.map((item) => <strong key={item}>{item}</strong>)}
+                  </div>
+                </section>
+
+                <section>
+                  <span className="paper-side-label">SKILL EVIDENCE</span>
+                  {application.skillGroups.map((group) => (
+                    <div className="application-skill-group" key={group.label}>
+                      <strong>{group.label}</strong><p>{group.value}</p>
+                    </div>
+                  ))}
+                </section>
+
+                <section className="application-experiment-ledger">
+                  <span className="paper-side-label">EXPERIMENT LEDGER</span>
+                  {application.experiments.map((experiment) => (
+                    <details key={experiment.name} open>
+                      <summary>{experiment.name}</summary>
+                      <dl>
+                        <div><dt>PROBLEM</dt><dd>{experiment.problem}</dd></div>
+                        <div><dt>APPROACH</dt><dd>{experiment.approach}</dd></div>
+                        <div><dt>EVIDENCE</dt><dd>{experiment.evaluation}</dd></div>
+                        <div className="application-gap"><dt>GAP</dt><dd>{experiment.gap}</dd></div>
+                      </dl>
+                    </details>
+                  ))}
+                </section>
+
+                <section className="application-why-card">
+                  <span className="paper-side-label">WHY THIS VERSION</span>
+                  <div><strong>PROMOTED</strong><p>{application.promoted}</p></div>
+                  <div><strong>DEFERRED</strong><p>{application.deferred}</p></div>
+                  <div><strong>LOGIC</strong><p>{application.rationale}</p></div>
+                </section>
+              </aside>
+            </div>
+
+            <footer className="application-paper-footer">
+              <span>CANONICAL SOURCE / DEYU_HUANG_RESUME_DM.PDF</span>
+              <span>{application.channel} / {application.status} / FIT {application.match}%</span>
+            </footer>
+          </article>
+        </div>
+      </section>
+    </main>
+  );
+}
+
 export default function Home() {
   const [page, setPage] = useState<PageId>("market");
   const [heatMode, setHeatMode] = useState<HeatMode>("skills");
@@ -912,6 +1365,9 @@ export default function Home() {
     sql: 70,
     typescript: 52,
   });
+  const [selectedApplicationId, setSelectedApplicationId] = useState(
+    APPLICATIONS[0].id,
+  );
 
   const loadLiveData = useCallback(async () => {
     setDataStatus("loading");
@@ -961,6 +1417,13 @@ export default function Home() {
       JSON.stringify({ ids: portfolioIds, proficiency }),
     );
   }, [portfolioIds, proficiency]);
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem("jobsdaq-selected-application");
+    if (saved && APPLICATIONS.some((item) => item.id === saved)) {
+      setSelectedApplicationId(saved);
+    }
+  }, []);
 
   const selected =
     snapshot.skills.find((skill) => skill.id === selectedId) ??
@@ -1028,6 +1491,11 @@ export default function Home() {
     if (heatMode !== "skills") return;
     setSelectedId(item.id);
     setPage("market");
+  };
+
+  const selectApplication = (id: string) => {
+    setSelectedApplicationId(id);
+    window.localStorage.setItem("jobsdaq-selected-application", id);
   };
 
   if (!selected) return null;
@@ -1532,6 +2000,14 @@ export default function Home() {
         </main>
       )}
 
+      {page === "application" && (
+        <ApplicationPage
+          selectedId={selectedApplicationId}
+          onSelect={selectApplication}
+        />
+      )}
+
+      {page !== "application" && (
       <button
         className="refresh-button"
         onClick={loadLiveData}
@@ -1540,6 +2016,7 @@ export default function Home() {
       >
         {dataStatus === "loading" ? "SYNC…" : "↻"}
       </button>
+      )}
     </div>
   );
 }
