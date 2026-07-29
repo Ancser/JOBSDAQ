@@ -7,8 +7,14 @@ import {
   useRef,
   useState,
 } from "react";
+import OpenLiquidGlassPage from "./open-liquid-glass";
 
-type PageId = "market" | "heatmap" | "portfolio" | "application";
+type PageId =
+  | "market"
+  | "heatmap"
+  | "portfolio"
+  | "application"
+  | "open-liquid-glass";
 type HeatMode = "skills" | "roles";
 type DataStatus = "loading" | "live" | "fallback";
 
@@ -332,83 +338,84 @@ const PAGE_LABELS: Array<{ id: PageId; label: string }> = [
   { id: "heatmap", label: "Heat Map" },
   { id: "portfolio", label: "Portfolio" },
   { id: "application", label: "Application" },
+  { id: "open-liquid-glass", label: "openLiquidGlass" },
 ];
 
 const APPLICATIONS: ApplicationRecord[] = [
   {
-    id: "figma-ai-product",
-    company: "Figma",
-    companyMark: "FI",
-    role: "Software Engineer, AI Product",
-    location: "San Francisco, CA / Hybrid",
-    updatedAt: "JUL 18, 2026",
-    status: "READY",
-    match: 91,
+    id: "tiktok-product-design",
+    company: "TikTok",
+    companyMark: "TT",
+    role: "Product Designer Graduate",
+    location: "San Jose, CA",
+    updatedAt: "JUL 28, 2026",
+    status: "DRAFT",
+    match: 82,
     channel: "DIRECT",
-    headline: "AI-assisted product engineer who turns ambiguous workflows into reliable software",
+    headline: "Interaction-focused designer who prototypes the behavior behind clear, responsive products",
     summary:
-      "UC Davis computer science graduate building production Python systems, LLM-assisted workflows, and user-facing tools. Experienced in directing coding agents, evaluating model-assisted ranking, and supporting software across real user environments.",
-    focus: ["PYTHON", "LLM EVALUATION", "AGENT WORKFLOWS", "PRODUCT DELIVERY"],
+      "UC Davis computer science graduate combining interaction design, real-time graphics, and production-minded front-end implementation. Builds motion systems that clarify hierarchy, state, and feedback instead of treating animation as decoration.",
+    focus: ["INTERACTION DESIGN", "MOTION", "PROTOTYPING", "ACCESSIBILITY"],
     experiences: [
       {
         kind: "PROJECT",
-        title: "ancserTPX - Live Algorithmic Futures Trading Platform",
-        meta: "Python | 2026 - Present",
+        title: "openLiquidGlass - Interactive Product System",
+        meta: "React, TypeScript, CSS | 2026",
         bullets: [
-          "Directed Claude Code and Codex agents to translate Pine Script strategy logic into a production Python engine with shadow, paper, and live execution modes.",
-          "Deployed the system for multiple traders, providing installation support and debugging across user environments while maintaining AI-usage documentation and Git history.",
+          "Translated liquid-glass motion studies into an interactive product system with purposeful focus, navigation, control, and state-transition patterns.",
+          "Built reduced-motion behavior, redundant state cues, keyboard-friendly controls, and responsive layouts into the prototype.",
         ],
       },
       {
         kind: "PROJECT",
-        title: "Music Recommendation System",
-        meta: "Python, ML, LLM Integration | 2026",
+        title: "Sakura Train Particle System",
+        meta: "GLSL, DirectX | 2025",
         bullets: [
-          "Integrated an LLM with collaborative filtering to re-rank each user's top-10 recommendations, improving NDCG and recall over the baseline and visualizing the comparison in statistical charts.",
+          "Designed a real-time falling-sakura scene and tuned randomized velocity, drift, rotation, and physics parameters to create organic, non-repeating motion.",
         ],
       },
       {
-        kind: "EXPERIENCE",
-        title: "Workflow Automation - Double Jo Massage",
-        meta: "Google Apps Script | 2024",
+        kind: "PROJECT",
+        title: "Farm Frenzy - 3-Day Game Jam",
+        meta: "Unity3D, C# | 2024",
         bullets: [
-          "Replaced manual bookkeeping and payroll entry with an end-to-end Google Sheets workflow designed for non-technical managers and staff.",
+          "Designed and delivered a playable 3D farm simulation with crop, inventory, store, movement, and time-based feedback loops in three days.",
         ],
       },
     ],
     skillGroups: [
-      { label: "BUILD", value: "Python, JavaScript, HTML/CSS, SQL, Git" },
-      { label: "AI", value: "Claude Code, Codex, LLM workflows, evaluation, re-ranking" },
-      { label: "DATA", value: "pandas, NumPy, scikit-learn, statistical backtesting" },
+      { label: "DESIGN", value: "Interaction states, motion systems, visual hierarchy, responsive UI" },
+      { label: "BUILD", value: "React, TypeScript, JavaScript, HTML/CSS, Git" },
+      { label: "MOTION", value: "GLSL, DirectX/HLSL, Unity3D, particle systems" },
     ],
     experiments: [
       {
-        name: "LLM re-ranking",
-        problem: "Improve a collaborative-filtering top-10 list.",
-        approach: "Use an LLM as a second-stage re-ranker.",
-        evaluation: "NDCG and recall improved over baseline.",
-        gap: "Dataset size and lift percentage are not in the source resume.",
+        name: "Interaction translation",
+        problem: "Turn an expressive component gallery into a coherent product experience.",
+        approach: "Map each motion behavior to navigation, focus, consent, or feedback.",
+        evaluation: "The result is a working multi-state prototype, not a static visual study.",
+        gap: "Formal user-testing results are not yet available.",
       },
       {
-        name: "Agent-built execution",
-        problem: "Move strategy logic from Pine Script into a deployable system.",
-        approach: "Direct coding agents, document usage, and validate shadow/paper/live modes.",
-        evaluation: "Deployed for multiple traders across user environments.",
-        gap: "No latency, usage-count, or productivity metric is claimed.",
+        name: "Motion comfort",
+        problem: "Preserve hierarchy for users who reduce or avoid motion.",
+        approach: "Provide a visible reduced-motion control and remove nonessential transitions.",
+        evaluation: "Every primary state remains legible without animated movement.",
+        gap: "The prototype still needs external accessibility testing.",
       },
     ],
-    promoted: "ancserTPX, Music Recommendation System, workflow automation",
-    deferred: "Graphics and game projects remain in the fact bank but move below the one-page relevance cutoff.",
+    promoted: "openLiquidGlass, Sakura Train, Farm Frenzy and interaction-system decisions",
+    deferred: "Trading-model details stay in the fact bank but do not lead a general product-design application.",
     rationale:
-      "This version leads with agent direction, evaluation, deployment, and support. It keeps the trading domain as evidence of product execution rather than presenting finance as the target identity.",
+      "This version leads with observable design behavior and implementation evidence. It does not claim formal UX research, shipped consumer scale, or Figma expertise that has not yet been documented.",
   },
   {
-    id: "quant-systems",
-    company: "IMC Trading",
-    companyMark: "IM",
-    role: "Graduate Software Engineer",
-    location: "Chicago, IL",
-    updatedAt: "JUL 12, 2026",
+    id: "midpoint-quant-developer",
+    company: "Midpoint Markets",
+    companyMark: "MM",
+    role: "Quantitative Developer",
+    location: "San Francisco, CA",
+    updatedAt: "JUL 28, 2026",
     status: "DRAFT",
     match: 88,
     channel: "CAMPUS",
@@ -471,80 +478,252 @@ const APPLICATIONS: ApplicationRecord[] = [
       "This version foregrounds execution modes, research validation, risk controls, and systems fundamentals. Every metric comes from the master resume; no simulated returns or latency claims are added.",
   },
   {
-    id: "nvidia-graphics",
-    company: "NVIDIA",
-    companyMark: "NV",
-    role: "Graphics Software Engineer, New Grad",
-    location: "Santa Clara, CA",
-    updatedAt: "JUL 03, 2026",
+    id: "onepay-design-engineer",
+    company: "OnePay",
+    companyMark: "OP",
+    role: "Design Engineer",
+    location: "Remote, United States",
+    updatedAt: "JUL 28, 2026",
     status: "DRAFT",
-    match: 84,
-    channel: "REFERRAL",
-    headline: "Graphics-focused software engineer combining shader programming with interactive systems",
+    match: 90,
+    channel: "DIRECT",
+    headline: "Design engineer turning expressive interaction physics into calm, trustworthy financial controls",
     summary:
-      "UC Davis computer science graduate with real-time graphics, shader programming, and game-development experience across GLSL, HLSL/DirectX, Unity3D, C#, and C++.",
-    focus: ["GLSL", "DIRECTX / HLSL", "C++", "REAL-TIME RENDERING"],
+      "UC Davis computer science graduate combining financial-system development, interaction design, and real-time motion. Built openLiquidGlass to demonstrate how tactile visual behavior can support comprehension, consent, and safety in wealth, payments, and risk workflows.",
+    focus: ["DESIGN ENGINEERING", "FINTECH UX", "REACT", "MOTION SYSTEMS"],
     experiences: [
+      {
+        kind: "PROJECT",
+        title: "openLiquidGlass - Financial Interaction Case Study",
+        meta: "React, TypeScript, CSS | 2026",
+        bullets: [
+          "Applied four liquid-glass component behaviors to real financial patterns: risk allocation, approval state, product navigation, and contextual focus.",
+          "Separated staged previews from committed actions and added reduced-motion behavior, redundant state cues, and responsive layouts.",
+        ],
+      },
+      {
+        kind: "PROJECT",
+        title: "ancserTPX - Live Algorithmic Futures Trading Platform",
+        meta: "Python, Web UI | 2026 - Present",
+        bullets: [
+          "Built a monitoring dashboard for a system with shadow, paper, and live modes so traders can compare risk and strategy behavior before execution.",
+        ],
+      },
       {
         kind: "PROJECT",
         title: "Sakura Train Particle System",
         meta: "GLSL, DirectX | 2025",
         bullets: [
-          "Built a real-time particle-rendering pipeline for a falling-sakura train scene inspired by 5 Centimeters Per Second.",
-          "Simulated organic, non-repeating motion by tuning randomized velocity, drift, rotation-angle, and physics-based falling parameters.",
-        ],
-      },
-      {
-        kind: "PROJECT",
-        title: "Farm Frenzy - 3-Day Game Jam",
-        meta: "Unity3D, C# | 2024",
-        bullets: [
-          "Designed and built a 3D farm simulation in three days, implementing crop-growth cycles, inventory/store systems, and time-based gameplay loops.",
-          "Implemented movement, collection, and selling mechanics and organized the 3D prop and scene layout.",
-        ],
-      },
-      {
-        kind: "PROJECT",
-        title: "ancserTPX - Monitoring Dashboard",
-        meta: "Python, Web UI | 2026 - Present",
-        bullets: [
-          "Built a web dashboard for monitoring a live execution system and comparing risk and backtest outputs across strategy variants.",
+          "Tuned randomized velocity, drift, rotation, and physics parameters to produce organic, non-repeating real-time motion.",
         ],
       },
     ],
     skillGroups: [
-      { label: "GRAPHICS", value: "GLSL, HLSL/DirectX, particle systems, shaders" },
-      { label: "ENGINE", value: "Unity3D, C#, C++, real-time rendering" },
-      { label: "SYSTEMS", value: "Computer architecture, operating systems, Git" },
+      { label: "PRODUCT", value: "Financial controls, interaction states, responsive UI, accessibility" },
+      { label: "FRONTEND", value: "React, TypeScript, JavaScript, HTML/CSS, Git" },
+      { label: "MOTION", value: "GLSL, DirectX/HLSL, Unity3D, particle systems" },
     ],
     experiments: [
       {
-        name: "Particle motion",
-        problem: "Avoid repetitive, mechanical falling-petal movement.",
-        approach: "Randomize velocity, drift, rotation angle, and falling behavior.",
-        evaluation: "Produced an organic, non-repeating animation.",
-        gap: "Particle count, frame rate, and hardware are not documented.",
+        name: "Safe financial motion",
+        problem: "Use rich motion without making high-impact actions feel ambiguous.",
+        approach: "Reserve elasticity for exploration and use explicit copy plus stable states around commitment.",
+        evaluation: "The allocation control produces a preview and clearly states that no transaction occurs.",
+        gap: "External usability-test evidence is still needed.",
       },
       {
-        name: "Game-jam delivery",
-        problem: "Complete a playable 3D simulation under a three-day constraint.",
-        approach: "Prioritize the crop, inventory, store, movement, and time loops.",
-        evaluation: "A complete Farm Frenzy prototype was delivered in the jam window.",
-        gap: "Team size and individual ownership split are not stated.",
+        name: "Component-to-product mapping",
+        problem: "Avoid a portfolio that is only a collection of visual effects.",
+        approach: "Explain the source behavior, the financial use case, and the interaction contract together.",
+        evaluation: "Four experiments are connected to three working financial product modes.",
+        gap: "Performance and Core Web Vitals have not yet been published.",
       },
     ],
-    promoted: "Sakura Train, Farm Frenzy, graphics and systems coursework",
-    deferred: "Trading research is compressed to one dashboard example; finance-specific details move out of the first-page story.",
+    promoted: "openLiquidGlass, ancserTPX dashboard, motion engineering and accessibility decisions",
+    deferred: "Deep factor-model details remain available for engineering interviews but do not lead the design-engineering story.",
     rationale:
-      "This version puts rendering evidence first and uses the game jam to show delivery under a hard deadline. It does not claim CUDA, Vulkan, engine internals, or performance numbers absent from the source resume.",
+      "This version connects the candidate's strongest domains—finance, interactive systems, and graphics—through a working product case study while being explicit about the user-research and performance evidence still missing.",
+  },
+  {
+    id: "stripe-financial-app",
+    company: "Stripe",
+    companyMark: "ST",
+    role: "Full-Stack Engineer, Dashboard Foundation",
+    location: "San Francisco, CA",
+    updatedAt: "JUL 28, 2026",
+    status: "DRAFT",
+    match: 86,
+    channel: "DIRECT",
+    headline: "Product engineer building observable financial workflows from data layer to decision surface",
+    summary:
+      "Computer science and statistics graduate with hands-on experience building automated trading systems, research dashboards, and operational workflows. Comfortable connecting backend state, quantitative evaluation, and user-facing controls.",
+    focus: ["FULL-STACK PRODUCT", "FINANCIAL SYSTEMS", "PYTHON", "WEB UI"],
+    experiences: [
+      {
+        kind: "PROJECT",
+        title: "ancserTPX - Live Algorithmic Futures Trading Platform",
+        meta: "Python | 2026 - Present",
+        bullets: [
+          "Built a futures execution system with shadow, paper, and live modes, structured stop-loss controls, scaled take-profit handling, and a monitoring dashboard.",
+          "Supported deployment and debugging across multiple trader environments while maintaining version-controlled implementation history.",
+        ],
+      },
+      {
+        kind: "PROJECT",
+        title: "ancserAPX - Factor-Based Equity Trading Platform",
+        meta: "Python, Web UI | 2025 - Present",
+        bullets: [
+          "Built a 10-equity research pipeline with SVD-based factor extraction and a web dashboard for comparing versioned backtest results.",
+        ],
+      },
+      {
+        kind: "EXPERIENCE",
+        title: "Workflow Automation - Double Jo Massage",
+        meta: "Google Apps Script | 2024",
+        bullets: [
+          "Replaced manual bookkeeping and payroll entry with an end-to-end spreadsheet workflow for non-technical managers and staff.",
+        ],
+      },
+    ],
+    skillGroups: [
+      { label: "BACKEND", value: "Python, SQL, Java, data structures, automation" },
+      { label: "FRONTEND", value: "React, TypeScript, JavaScript, HTML/CSS" },
+      { label: "QUALITY", value: "Git, backtesting, staged execution, monitoring" },
+    ],
+    experiments: [
+      {
+        name: "Staged execution",
+        problem: "Validate behavior before a financial system reaches live execution.",
+        approach: "Separate shadow, paper, and live operating modes and monitor each transition.",
+        evaluation: "The platform supports deployment without treating every test as a real trade.",
+        gap: "Uptime, latency, and transaction-volume metrics are not documented.",
+      },
+      {
+        name: "Dashboard comparison",
+        problem: "Make strategy differences visible before selection.",
+        approach: "Version backtests and expose risk and performance measures in a web dashboard.",
+        evaluation: "Variants can be reviewed through a consistent comparison surface.",
+        gap: "No external customer-adoption metric is claimed.",
+      },
+    ],
+    promoted: "ancserTPX, ancserAPX and operational workflow automation",
+    deferred: "Graphics projects remain as supporting interaction evidence but do not lead a full-stack finance application.",
+    rationale:
+      "This version emphasizes financial state, controlled execution, dashboard delivery, and support across real environments. It avoids unsupported scale, latency, and revenue claims.",
+  },
+  {
+    id: "upstart-bank-platform",
+    company: "Upstart",
+    companyMark: "UP",
+    role: "Software Engineer I, Upstart Bank",
+    location: "Remote, United States",
+    updatedAt: "JUL 28, 2026",
+    status: "DRAFT",
+    match: 79,
+    channel: "DIRECT",
+    headline: "Careful software engineer designing traceable workflows for money, records, and operational decisions",
+    summary:
+      "UC Davis computer science graduate with a statistics minor and experience automating bookkeeping, maintaining inventory systems, and building financial software with explicit staged modes and risk controls.",
+    focus: ["PLATFORM ENGINEERING", "DATA INTEGRITY", "RISK CONTROLS", "OPERATIONS"],
+    experiences: [
+      {
+        kind: "PROJECT",
+        title: "ancserTPX - Controlled Trading Execution",
+        meta: "Python | 2026 - Present",
+        bullets: [
+          "Implemented separate shadow, paper, and live modes with structured stop-loss and scaled take-profit controls.",
+          "Built backtest and monitoring views around Calmar ratio, maximum drawdown, and risk-reward ratio.",
+        ],
+      },
+      {
+        kind: "EXPERIENCE",
+        title: "Workflow Automation - Double Jo Massage",
+        meta: "Google Apps Script | 2024",
+        bullets: [
+          "Automated bookkeeping and payroll-entry workflows while keeping the interface usable for non-technical staff.",
+        ],
+      },
+      {
+        kind: "EXPERIENCE",
+        title: "Systems and Inventory Support - Acme Express",
+        meta: "2023",
+        bullets: [
+          "Supported operational systems and inventory records in a business environment where accurate state and handoffs mattered.",
+        ],
+      },
+    ],
+    skillGroups: [
+      { label: "ENGINEERING", value: "Python, Java, C++, SQL, algorithms, Git" },
+      { label: "DATA", value: "pandas, NumPy, scikit-learn, statistical analysis" },
+      { label: "OPERATIONS", value: "Workflow automation, inventory records, user support" },
+    ],
+    experiments: [
+      {
+        name: "Risk-gated modes",
+        problem: "Prevent untested strategy changes from moving directly into live operation.",
+        approach: "Make shadow and paper execution explicit stages before live use.",
+        evaluation: "The system exposes operating mode and risk behavior for review.",
+        gap: "This is trading-platform evidence, not prior banking employment.",
+      },
+      {
+        name: "Human-readable automation",
+        problem: "Reduce repetitive financial entry without hiding the workflow from staff.",
+        approach: "Keep the process inside a familiar spreadsheet interface and automate repetitive steps.",
+        evaluation: "Managers and staff can operate the resulting workflow without a custom technical console.",
+        gap: "Time-saved and error-rate measurements were not recorded.",
+      },
+    ],
+    promoted: "Risk controls, bookkeeping automation, inventory systems and quantitative coursework",
+    deferred: "Advanced visual motion is available in the portfolio but stays secondary to integrity and operational reliability.",
+    rationale:
+      "This version makes the banking transfer explicit: careful state transitions, record accuracy, and operational usability. It does not imply prior bank employment or regulated-production experience.",
   },
 ];
 
-const money = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-  maximumFractionDigits: 0,
-});
+const DEFAULT_PORTFOLIO_IDS = ["python", "sql", "typescript"];
+const DEFAULT_PROFICIENCY = {
+  python: 78,
+  sql: 70,
+  typescript: 52,
+};
+
+function readStoredPortfolio() {
+  if (typeof window === "undefined") {
+    return {
+      ids: DEFAULT_PORTFOLIO_IDS,
+      proficiency: DEFAULT_PROFICIENCY,
+    };
+  }
+  try {
+    const saved = window.localStorage.getItem("jobsdaq-portfolio");
+    if (!saved) throw new Error("No saved portfolio");
+    const parsed = JSON.parse(saved) as {
+      ids?: string[];
+      proficiency?: Record<string, number>;
+    };
+    return {
+      ids: Array.isArray(parsed.ids) ? parsed.ids : DEFAULT_PORTFOLIO_IDS,
+      proficiency: parsed.proficiency ?? DEFAULT_PROFICIENCY,
+    };
+  } catch {
+    return {
+      ids: DEFAULT_PORTFOLIO_IDS,
+      proficiency: DEFAULT_PROFICIENCY,
+    };
+  }
+}
+
+function readStoredApplicationId() {
+  if (typeof window === "undefined") return APPLICATIONS[0].id;
+  try {
+    const saved = window.localStorage.getItem("jobsdaq-selected-application");
+    return saved && APPLICATIONS.some((item) => item.id === saved)
+      ? saved
+      : APPLICATIONS[0].id;
+  } catch {
+    return APPLICATIONS[0].id;
+  }
+}
 
 const compactMoney = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -1355,19 +1534,14 @@ export default function Home() {
   const [dataStatus, setDataStatus] = useState<DataStatus>("loading");
   const [selectedId, setSelectedId] = useState("python");
   const [query, setQuery] = useState("");
-  const [portfolioIds, setPortfolioIds] = useState<string[]>([
-    "python",
-    "sql",
-    "typescript",
-  ]);
-  const [proficiency, setProficiency] = useState<Record<string, number>>({
-    python: 78,
-    sql: 70,
-    typescript: 52,
-  });
-  const [selectedApplicationId, setSelectedApplicationId] = useState(
-    APPLICATIONS[0].id,
+  const [portfolioIds, setPortfolioIds] = useState<string[]>(
+    () => readStoredPortfolio().ids,
   );
+  const [proficiency, setProficiency] = useState<Record<string, number>>(
+    () => readStoredPortfolio().proficiency,
+  );
+  const [selectedApplicationId, setSelectedApplicationId] =
+    useState(readStoredApplicationId);
 
   const loadLiveData = useCallback(async () => {
     setDataStatus("loading");
@@ -1393,23 +1567,11 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    loadLiveData();
+    const timeout = window.setTimeout(() => {
+      void loadLiveData();
+    }, 0);
+    return () => window.clearTimeout(timeout);
   }, [loadLiveData]);
-
-  useEffect(() => {
-    const saved = window.localStorage.getItem("jobsdaq-portfolio");
-    if (!saved) return;
-    try {
-      const parsed = JSON.parse(saved) as {
-        ids?: string[];
-        proficiency?: Record<string, number>;
-      };
-      if (Array.isArray(parsed.ids)) setPortfolioIds(parsed.ids);
-      if (parsed.proficiency) setProficiency(parsed.proficiency);
-    } catch {
-      // Keep the safe default portfolio.
-    }
-  }, []);
 
   useEffect(() => {
     window.localStorage.setItem(
@@ -1417,13 +1579,6 @@ export default function Home() {
       JSON.stringify({ ids: portfolioIds, proficiency }),
     );
   }, [portfolioIds, proficiency]);
-
-  useEffect(() => {
-    const saved = window.localStorage.getItem("jobsdaq-selected-application");
-    if (saved && APPLICATIONS.some((item) => item.id === saved)) {
-      setSelectedApplicationId(saved);
-    }
-  }, []);
 
   const selected =
     snapshot.skills.find((skill) => skill.id === selectedId) ??
@@ -2007,7 +2162,9 @@ export default function Home() {
         />
       )}
 
-      {page !== "application" && (
+      {page === "open-liquid-glass" && <OpenLiquidGlassPage />}
+
+      {page !== "application" && page !== "open-liquid-glass" && (
       <button
         className="refresh-button"
         onClick={loadLiveData}

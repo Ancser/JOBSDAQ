@@ -31,16 +31,20 @@ test("server-renders the JOBSDAQ product shell", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>JOBSDAQ — The Market for Human Skills<\/title>/i);
+  assert.match(
+    html,
+    /<title>JOBSDAQ — Skill Market &amp; openLiquidGlass<\/title>/i,
+  );
   assert.match(html, /ancser/);
   assert.match(html, /JOBSDAQ/);
   assert.match(html, />Market</);
   assert.match(html, />Heat Map</);
   assert.match(html, />Portfolio</);
   assert.match(html, />Application</);
+  assert.match(html, />openLiquidGlass</);
   assert.match(html, /GREENHOUSE API/);
   assert.match(html, /FIGMA/);
-  assert.match(html, /og\.png/);
+  assert.match(html, /open-liquid-glass-og\.png/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
 });
 
@@ -49,7 +53,7 @@ test("removes starter preview assets and ships product metadata", async () => {
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
-    stat(new URL("../public/og.png", import.meta.url)),
+    stat(new URL("../public/open-liquid-glass-og.png", import.meta.url)),
     stat(new URL("../public/favicon.ico", import.meta.url)),
   ]);
 
@@ -58,9 +62,10 @@ test("removes starter preview assets and ships product metadata", async () => {
   assert.match(page, /PERSONAL SKILLS/);
   assert.match(page, /APPLICATION HISTORY/);
   assert.match(page, /FACT-SAFE TAILORING/);
+  assert.match(page, /openLiquidGlass/);
   assert.match(page, /Deyu Huang/);
-  assert.match(layout, /JOBSDAQ — The Market for Human Skills/);
-  assert.match(layout, /\/og\.png/);
+  assert.match(layout, /JOBSDAQ — Skill Market & openLiquidGlass/);
+  assert.match(layout, /\/open-liquid-glass-og\.png/);
   assert.match(packageJson, /"name": "jobsdaq"/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
   assert.ok(og.size > 100_000);

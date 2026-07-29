@@ -24,35 +24,35 @@ export async function generateMetadata(): Promise<Metadata> {
     (host.startsWith("localhost") ? "http" : "https");
   const origin = `${protocol}://${host}`;
   const description =
-    "A live demo for skill pricing, wage heat maps, personal portfolios, and fact-safe job application previews.";
+    "Explore skill pricing, tailored application previews, and openLiquidGlass—a working interaction-design case study for financial products.";
 
   return {
     metadataBase: new URL(origin),
-    title: "JOBSDAQ — The Market for Human Skills",
+    title: "JOBSDAQ — Skill Market & openLiquidGlass",
     description,
     icons: {
       icon: "/favicon.ico",
       shortcut: "/favicon.ico",
     },
     openGraph: {
-      title: "JOBSDAQ — The Market for Human Skills",
+      title: "JOBSDAQ — Skill Market & openLiquidGlass",
       description,
       type: "website",
       url: origin,
       images: [
         {
-          url: `${origin}/og.png`,
+          url: `${origin}/open-liquid-glass-og.png`,
           width: 1672,
           height: 941,
-          alt: "JOBSDAQ skill market terminal",
+          alt: "openLiquidGlass interaction physics for financial products by Deyu Huang",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "JOBSDAQ — The Market for Human Skills",
+      title: "JOBSDAQ — Skill Market & openLiquidGlass",
       description,
-      images: [`${origin}/og.png`],
+      images: [`${origin}/open-liquid-glass-og.png`],
     },
   };
 }
